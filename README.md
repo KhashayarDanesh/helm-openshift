@@ -16,7 +16,7 @@ but how does it work?
 
 Considering we have it deployed on a project (namespace), and we want to deploy an application on another namespace, tiller's service account will be added to that namespace with edit role, so helm can deploy services, define routes, change configmaps, sercrets etc. 
 
-1. Create an openshift project for tiller or use an already created project
+## `1`. Create an openshift project for tiller or use an already created project
 
 (tiller is the serverside software)
 
@@ -28,9 +28,10 @@ in case of will to select an existing project:
 ```
 $ oc project {project name}
 ```
-2. do `export TILLER_NAMESPACE=tiller` so the name of tiller's namespace environment variable is set into your shell session. 
 
-3. Install helm client on your computer. 
+## `2`. do `export TILLER_NAMESPACE=tiller` so the name of tiller's namespace environment variable is set into your shell session. 
+
+## `3`. Install helm client on your computer. 
 
 have a look at [helm releases page](https://github.com/helm/helm/releases) for newer releases. 
 please note your helm client and server deployment should be the same version.
@@ -68,7 +69,7 @@ $ sudo cp helm /usr/local/bin && chmod +x /usr/local/bin/helm
 $ helm init --client only
 ```
 
-4. Install Helm on the selected namespace
+## `4`. Install Helm on the selected namespace
 
 ```
 $ oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.11.0 | oc create -f -
@@ -98,13 +99,13 @@ Error: pods is forbidden: User "KhashayarDanesh" cannot list pods in the namespa
 ```
 After resolving all the issues, you can proceed to deploy apps with helm. 
 
-5. Create/Select a project which you want to deploy your apps on.
+## `5`. Create/Select a project which you want to deploy your apps on.
 
 ```
 $ oc new-project sample-app
 ```
 
-6. Grant helm's service account to edit deployment config on this new project: 
+## `6`. Grant helm's service account to edit deployment config on this new project: 
 
 ```
 $ oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller"

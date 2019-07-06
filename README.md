@@ -116,4 +116,7 @@ $ oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:til
 oc adm policy add-scc-to-user anyuid -z default -n sample-app 
 ```
 
-TaDa ! Now you get to deploy anything you want on the desired namespace using helm. 
+## Flux Operator on openshift 
+```
+oc adm policy add-scc-to-user privileged -z flux
+```

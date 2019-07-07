@@ -118,5 +118,5 @@ oc adm policy add-scc-to-user anyuid -z default -n sample-app
 
 ## Flux Operator on openshift 
 ```
-oc adm policy add-scc-to-user privileged -z flux
+oc adm policy add-scc-to-user privileged -n flux -z default 
 ```

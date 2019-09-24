@@ -111,4 +111,12 @@ $ oc new-project sample-app
 $ oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller"
 ```
 
-TaDa ! Now you get to deploy anything you want on the desired namespace using helm. 
+## `7`. Grant permissions to run with root access for the containers: 
+```
+oc adm policy add-scc-to-user anyuid -z default -n sample-app 
+```
+
+## Flux Operator on openshift 
+```
+oc adm policy add-scc-to-user privileged -n flux -z default 
+```
